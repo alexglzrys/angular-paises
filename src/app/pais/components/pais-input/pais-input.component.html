@@ -1,0 +1,12 @@
+<form (submit)="buscar()">
+  <!-- Este componente reacciona cuando recibe la entrada del usuario para poder ofrecerle sugerencias (input)
+       Como la busqueda se hace una vez enviado el formulario, ENTER, es posible mostrar las sugerencias con forme escribe en la caja de texto -->
+  <input type="text"
+         name="termino"
+         [placeholder]="placeholder"
+         class="form-control"
+         autocomplete="off"
+         (input)="teclaPresionada()"
+         [(ngModel)]="termino">
+
+</form>

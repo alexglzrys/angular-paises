@@ -1,0 +1,39 @@
+<div class="animate__animated animate__bounceIn">
+
+
+<h2>Por País</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <!-- Escuchar el evento personalizado onBuscarTermino para buscar el país con el termino pasado como mensaje del evento -->
+    <app-pais-input (onBuscarTermino)="buscar($event)"
+                    (onDebounce)="mostrarSugerencias($event)"
+                    placeholder="Buscar país..."></app-pais-input>
+  </div>
+</div>
+  <ul class="list-group" *ngIf="mostrarListadoSugerencias">
+    <li *ngFor="let pais of paisesSugeridos" class="list-group-item list-group-item-action">
+      <a [routerLink]="['/pais', pais.alpha2Code]" class="nav-link">{{ pais.name }}</a>
+    </li>
+    <!-- Esta ultima opción permitira al usuario mostrar todas las coincidencas en la tabla -->
+    <li *ngIf="termino"
+        (click)="buscar(termino)"
+        class="list-group-item list-group-item-action">
+      <a style="cursor: pointer" class="nav-link">Mostrar todas las coincidencias de: "{{ termino }}"</a>
+    </li>
+  </ul>
+
+<hr>
+<div *ngIf="isError; else tablaPaises" class="alert alert-danger">
+  No se encontró nada con el término <strong>{{ termino }}.</strong>
+</div>
+
+<ng-template #tablaPaises>
+<div class="row">
+  <div class="col">
+      <app-pais-tabla [paises]="paises"></app-pais-tabla>
+  </div>
+</div>
+</ng-template>
+</div>

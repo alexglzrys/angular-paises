@@ -1,0 +1,25 @@
+<div class="animate__animated animate__bounceIn">
+<h3>Buscar por región <small>{{ regionActiva | titlecase }}</small></h3>
+<hr>
+<h5>Seleccione una región</h5>
+<div class="row">
+  <div class="col-12">
+
+    <!-- Aplica la clase btn-primary si la condición se cumple - IF SIMPLE -->
+    <!-- [class.btn-primary]="region === regionActiva" -->
+
+    <!-- Aplica el conjunto de clases, solo si se cumple la condición - IF COMPUESTO -->
+    <!-- [ngClass]="{
+              'btn-primary': region === regionActiva,
+              'btn-outline-primary': region !== regionActiva
+            }" -->
+    <button *ngFor="let region of regiones"
+            [class]="getClassActive(region)"
+            (click)="activarRegion(region)">{{ region }}</button>
+  </div>
+
+  <div class="col-12" *ngIf="paises.length">
+    <app-pais-tabla [paises]="paises"></app-pais-tabla>
+  </div>
+</div>
+</div>

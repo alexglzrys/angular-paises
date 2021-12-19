@@ -1,0 +1,18 @@
+<div>
+  <h2>Búsquedas</h2>
+  <hr>
+  <ul class="list-group">
+    <!-- routerLink
+         es un componente que se expone cuando se exporta el RouterModule
+         y sirve para navegar entre rutas
+
+         routerLinkActive
+         permite especificar la clase de CSS que se inyectará al elemento cuando el path coincida
+
+         routerLinkActiveOptions
+         permite especificar que la ruta principal se debe mostrar activa cuando el path sea exacto-->
+    <li class="list-group-item" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >Buscar País</li>
+    <li class="list-group-item" routerLink="region" routerLinkActive="active">Buscar Región</li>
+    <li class="list-group-item" routerLink="capital" routerLinkActive="active">Buscar Capital</li>
+  </ul>
+</div>

@@ -1,0 +1,44 @@
+<div *ngIf="!pais; else infoPais" class="alert alert-info">Espere un momento por favor....</div>
+
+<ng-template #infoPais>
+  <div class="row animate__animated animate__bounceIn">
+    <div class="col-12">
+      <!-- ? Preguntar si el objeto existe para mostrar el valor de dicha propiedad
+       Puede ser util si queremos evitar el uso de condicionales para que no truene el código al inicio de la carga del componente -->
+      <h1>Pais: <small>{{ pais?.name }}</small></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <h3>Bandera</h3>
+      <img [src]="pais.flag" [alt]="pais.name" class="img-thumbnail">
+    </div>
+    <div class="col">
+      <h3>Información</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Población: {{ pais.population | number }}</strong>
+        </li>
+        <li class="list-group-item">
+          <strong>Código numérico: {{ pais.numericCode }}</strong>
+        </li>
+        <li class="list-group-item">
+          <strong>Código Alpha3 {{ pais.alpha3Code }}</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <h3>Traducciones</h3>
+  <div class="row">
+    <div class="col">
+      <!-- Iterar por cada una de las propiedades de un objeto - Pipe keyvalue  -->
+      <span *ngFor="let traduccion of pais.translations | keyvalue "
+            class="badge bg-primary me-2">{{ traduccion.value }}</span>
+    </div>
+  </div>
+  <pre class="mt-5">
+    <!-- Pipe json = imprimir el contenido de un objeto  -->
+    {{pais | json }}
+  </pre>
+</ng-template>
+

@@ -1,0 +1,28 @@
+<div class="animate__animated animate__bounceIn">
+  <h2>Por Capital</h2>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <!-- Escuchar el evento personalizado onBuscarTermino para buscar el país con el termino pasado como mensaje del evento -->
+      <app-pais-input (onBuscarTermino)="buscar($event)"
+                      (onDebounce)="mostrarSugerencias($event)"
+                      placeholder="Buscar capital..."></app-pais-input>
+    </div>
+  </div>
+  <div *ngIf="isError" class="alert alert-danger">
+    No se encontró nada con el término <strong>{{ termino }}.</strong>
+  </div>
+
+
+    <div class="row" *ngIf="paises.length">
+      <div class="col">
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
+      </div>
+    </div>
+
+</div>
+
+
+
+
+
