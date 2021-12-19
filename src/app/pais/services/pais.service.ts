@@ -8,14 +8,15 @@ import {Country} from "../interfaces/pais";
 })
 export class PaisService {
 
-  private _apiURL: string = 'https://restcountries.eu/rest/v2';
+  //private _apiURL: string = 'https://restcountries.eu/rest/v2';
+  private _apiURL: string = 'https://restcountries.com/v2';
 
   constructor(private http: HttpClient) { }
 
   get httpParams() {
     // Dependiendo del diseño de la API, podemos especificar que campos necesitamos como respuesta para hacerlas más ligeras en cuanto a peso
     // No es necesario traer todos los datos, si solo necesitamos pintar algunos de ellos
-    return new HttpParams().set('fields', 'name;capital;flag;population;alpha2Code');
+    return new HttpParams().set('fields', 'name,capital,flags,population,alpha3Code');
   }
 
   buscarPais(termino: string): Observable<Country[]> {
